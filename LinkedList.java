@@ -6,6 +6,42 @@ public class LinkedList <T> {
     private Node<T> last;
 
 
+    public void removeByValue(T value){
+        Node<T> node = first;
+        while(node !=null){
+            if(node.value.equals(value))
+                remove(node);
+            node=node.next;
+        }
+    }
+
+    public void removeByIndex(int index){
+        if (index < 0 || index >= size)
+            throw new IllegalArgumentException();
+        Node<T> node = getNodeByIndex(index);
+        remove(node);
+    }
+
+    private void remove(Node<T> node){
+        if(size==1){
+            first=last=null;
+            size--;
+            return;
+        }
+        Node<T> prev = node.previous;
+        Node<T> next = node.next;
+        if(prev !=null && next !=null){
+            prev.next = next;
+            next.previous=prev;
+            size--;
+        }else if(prev == null){
+            next.previous=null;
+            size--;
+        }else{
+            prev.next=null;
+            size--;
+        }
+    }
 
 
     private Node<T> getNodeByIndex(int index){
@@ -49,7 +85,7 @@ public class LinkedList <T> {
     public T getByIndex(int index) {
         return getNodeByIndex(index).value;
     }
-    
+
 
     public void addLast(T value){
         Node<T> node = new Node<>(value);
