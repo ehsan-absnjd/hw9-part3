@@ -1,6 +1,8 @@
 package third;
 
-public class LinkedList <T> {
+import java.util.Iterator;
+
+public class LinkedList <T> implements Iterable<T> {
     private int size=0;
     private Node<T> first;
     private Node<T> last;
@@ -153,6 +155,27 @@ public class LinkedList <T> {
 
     public int size(){
         return size;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private Node<T> node = first;
+            @Override
+            public boolean hasNext() {
+                if(node!=null)
+                    return true;
+                else
+                    return false;
+            }
+
+            @Override
+            public T next() {
+                T value = node.value;
+                node=node.next;
+                return value;
+            }
+        };
     }
 
     private static class Node<T>{
