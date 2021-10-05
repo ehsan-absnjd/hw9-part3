@@ -9,10 +9,10 @@ public class LinkedList <T> {
         System.out.print("{ ");
         Node<T> node = first;
         while(node !=null){
-            System.out.print(node.value);
+            System.out.print(node.value + " ");
             node=node.next;
         }
-        System.out.println(" }");
+        System.out.println("}");
     }
 
 
@@ -124,6 +124,26 @@ public class LinkedList <T> {
         Node<T> tmp = first;
         first=node;
         node.next=tmp;
+        size++;
+    }
+
+    public void addAtIndex(int index , T value){
+        if(index<0 || index>size ){
+            throw new IllegalArgumentException();
+        }
+        if (index==0) {
+            addFirst(value);
+            return;
+        }
+        if ( index == size){
+            addLast(value);
+            return;
+        }
+        Node<T> node = new Node<>(value);
+        Node<T> atIndex = getNodeByIndex(index);
+        node.previous = atIndex.previous;
+        node.next=atIndex;
+        atIndex.previous=node;
         size++;
     }
 
