@@ -27,11 +27,13 @@ public class LinkedList <T> implements Iterable<T> {
         }
     }
 
-    public void removeByIndex(int index){
+    public T removeByIndex(int index){
         if (index < 0 || index >= size)
             throw new IllegalArgumentException();
         Node<T> node = getNodeByIndex(index);
+        T value = node.value;
         remove(node);
+        return value;
     }
 
     private void remove(Node<T> node){
