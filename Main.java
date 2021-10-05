@@ -45,10 +45,5 @@ public class Main {
         //System.out.println(iterator.next());
 
     }
-    public static void info(LinkedList<String> list){
-        System.out.println("is empty:" + list.isEmpty());
-        System.out.println("size:" + list.size());
-        list.printValues();
-
-    }
+    
 }
