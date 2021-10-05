@@ -5,6 +5,16 @@ public class LinkedList <T> {
     private Node<T> first;
     private Node<T> last;
 
+    public void printValues(){
+        System.out.print("{ ");
+        Node<T> node = first;
+        while(node !=null){
+            System.out.print(node.value);
+            node=node.next;
+        }
+        System.out.println(" }");
+    }
+
 
     public void removeByValue(T value){
         Node<T> node = first;
